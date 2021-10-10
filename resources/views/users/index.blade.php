@@ -42,6 +42,7 @@
                             <th scope="col">#Id</th>
                             <th scope="col">Username</th>
                             <th scope="col">Email</th>
+                            <th scope="col">User Role</th>
                             <th scope="col">Manage</th>
                         </tr>
                     </thead>
@@ -51,6 +52,7 @@
                                 <th scope="row">{{ $user->id }}</th>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->user_roles }}</td>
                                 <td>
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-success">Edit</a>
                                 </td>

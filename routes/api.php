@@ -20,13 +20,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/employees/countries', [EmployeeDataController::class, 'countries']);
-Route::get('/employees/{country}/states', [EmployeeDataController::class, 'states']);
-Route::get('/employees/departments', [EmployeeDataController::class, 'departments']);
-Route::get('/employees/{state}/cities', [EmployeeDataController::class, 'cities']);
+// Route::get('/employees/countries', [EmployeeDataController::class, 'countries']);
+// Route::get('/employees/{country}/states', [EmployeeDataController::class, 'states']);
+// Route::get('/employees/departments', [EmployeeDataController::class, 'departments']);
+// Route::get('/employees/{state}/cities', [EmployeeDataController::class, 'cities']);
 
 // Route::get('/employees', [EmployeeController::class, 'index']);
 // Route::post('/employees', [EmployeeController::class, 'store']);
 // Route::delete('/employees/{employee}', [EmployeeController::class, 'destroy']);
-
+Route::get('/employees/companies', [EmployeeDataController::class, 'companies']);
 Route::apiResource('employees', EmployeeController::class);
+
+//Route::apiResource('companies', CompanyController::class);

@@ -83,7 +83,33 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="form-group row">
+
+                               <div class="form-group row">
+                                    <label
+                                        for="company"
+                                        class="col-md-4 col-form-label text-md-right"
+                                        >Company</label
+                                    >
+
+                                    <div class="col-md-6">
+                                        <select
+                                            v-model="form.company_id"
+                                            @change="getCompanies()"
+                                            name="company"
+                                            class="form-control"
+                                            aria-label="Default select example"
+                                        >
+                                            <option
+                                                v-for="company in companies"
+                                                :key="company.id"
+                                                :value="company.id"
+                                                >{{ company.name }}</option
+                                            >
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- <div class="form-group row">
                                     <label
                                         for="country"
                                         class="col-md-4 col-form-label text-md-right"
@@ -106,8 +132,8 @@
                                             >
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group row">
+                                </div> -->
+                                <!-- <div class="form-group row">
                                     <label
                                         for="state"
                                         class="col-md-4 col-form-label text-md-right"
@@ -130,8 +156,8 @@
                                             >
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group row">
+                                </div> -->
+                                <!-- <div class="form-group row">
                                     <label
                                         for="department"
                                         class="col-md-4 col-form-label text-md-right"
@@ -176,9 +202,9 @@
                                             >
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <label
                                         for="zip_code"
                                         class="col-md-4 col-form-label text-md-right"
@@ -190,6 +216,40 @@
                                             id="zip_code"
                                             v-model="form.zip_code"
                                             type="text"
+                                            class="form-control "
+                                            required
+                                        />
+                                    </div>
+                                </div> -->
+                                <div class="form-group row">
+                                    <label
+                                        for="email"
+                                        class="col-md-4 col-form-label text-md-right"
+                                        >Employee Email</label
+                                    >
+
+                                    <div class="col-md-6">
+                                        <input
+                                            id="email"
+                                            v-model="form.email"
+                                            type="email"
+                                            class="form-control "
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label
+                                        for="phone"
+                                        class="col-md-4 col-form-label text-md-right"
+                                        >Employee Phone</label
+                                    >
+
+                                    <div class="col-md-6">
+                                        <input
+                                            id="phone"
+                                            v-model="form.phone"
+                                            type="number"
                                             class="form-control "
                                             required
                                         />
@@ -249,70 +309,86 @@ export default {
     },
     data() {
         return {
-            countries: [],
-            states: [],
-            departments: [],
-            cities: [],
+            // countries: [],
+
+            // states: [],
+            // departments: [],
+            // cities: [],
+            companies: [],
             form: {
                 first_name: "",
                 last_name: "",
                 middle_name: "",
                 address: "",
-                country_id: "",
-                state_id: "",
-                department_id: "",
-                city_id: "",
-                zip_code: "",
+                email: "",
+                phone: "",
+                company_id: "",
+                // country_id: "",
+                // state_id: "",
+                // department_id: "",
+                // city_id: "",
+                //zip_code: "",
                 birthdate: null,
                 date_hired: null
             }
         };
     },
     created() {
-        this.getCountries();
-        this.getDepartments();
+        //this.getCountries();
+        //this.getDepartments();
+        this.getCompanies();
     },
     methods: {
-        getCountries() {
-            axios
-                .get("/api/employees/countries")
-                .then(res => {
-                    this.countries = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
-        getStates() {
-            axios
-                .get("/api/employees/" + this.form.country_id + "/states")
-                .then(res => {
-                    this.states = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
-        getCities() {
-            axios
-                .get("/api/employees/" + this.form.state_id + "/cities")
-                .then(res => {
-                    this.cities = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
-        getDepartments() {
-            axios
-                .get("/api/employees/departments")
-                .then(res => {
-                    this.departments = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
+        getCompanies() {
+             axios
+                 .get("/api/employees/companies")
+                 .then(res => {
+                     this.companies = res.data;
+                 })
+                 .catch(error => {
+                     console.log(console.error);
+                 });
+         },
+        // getCountries() {
+        //     axios
+        //         .get("/api/employees/countries")
+        //         .then(res => {
+        //             this.countries = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
+        // getStates() {
+        //     axios
+        //         .get("/api/employees/" + this.form.country_id + "/states")
+        //         .then(res => {
+        //             this.states = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
+        // getCities() {
+        //     axios
+        //         .get("/api/employees/" + this.form.state_id + "/cities")
+        //         .then(res => {
+        //             this.cities = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
+        // getDepartments() {
+        //     axios
+        //         .get("/api/employees/departments")
+        //         .then(res => {
+        //             this.departments = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
         storeEmployee() {
             axios
                 .post("/api/employees", {
@@ -320,11 +396,15 @@ export default {
                     middle_name: this.form.middle_name,
                     last_name: this.form.last_name,
                     address: this.form.address,
-                    country_id: this.form.country_id,
-                    state_id: this.form.state_id,
-                    city_id: this.form.city_id,
-                    department_id: this.form.department_id,
-                    zip_code: this.form.zip_code,
+                    email: this.form.email,
+                    phone: this.form.phone,
+                    company_id: this.form.company_id,
+
+                    // country_id: this.form.country_id,
+                    // state_id: this.form.state_id,
+                    // city_id: this.form.city_id,
+                    // department_id: this.form.department_id,
+                   // zip_code: this.form.zip_code,
                     birthdate: this.format_date(this.form.birthdate),
                     date_hired: this.format_date(this.form.date_hired)
                 })

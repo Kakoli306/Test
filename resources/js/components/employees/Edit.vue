@@ -66,6 +66,42 @@
                                         />
                                     </div>
                                 </div>
+                                
+                                <div class="form-group row">
+                                    <label
+                                        for="email"
+                                        class="col-md-4 col-form-label text-md-right"
+                                        >Email</label
+                                    >
+
+                                    <div class="col-md-6">
+                                        <input
+                                            id="email"
+                                            v-model="form.email"
+                                            type="email"
+                                            class="form-control "
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label
+                                        for="phone"
+                                        class="col-md-4 col-form-label text-md-right"
+                                        >Phone</label
+                                    >
+
+                                    <div class="col-md-6">
+                                        <input
+                                            id="phone"
+                                            v-model="form.phone"
+                                            type="number"
+                                            class="form-control "
+                                            required
+                                        />
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <label
                                         for="address"
@@ -83,118 +119,32 @@
                                         />
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                              
+                               <div class="form-group row">
                                     <label
-                                        for="country"
+                                        for="company"
                                         class="col-md-4 col-form-label text-md-right"
-                                        >Country</label
+                                        >Company</label
                                     >
 
                                     <div class="col-md-6">
                                         <select
-                                            v-model="form.country_id"
-                                            @change="getStates()"
-                                            name="country"
+                                            v-model="form.company_id"
+                                            @change="getCompanies()"
+                                            name="company"
                                             class="form-control"
                                             aria-label="Default select example"
                                         >
                                             <option
-                                                v-for="country in countries"
-                                                :key="country.id"
-                                                :value="country.id"
-                                                >{{ country.name }}</option
+                                                v-for="company in companies"
+                                                :key="company.id"
+                                                :value="company.id"
+                                                >{{ company.name }}</option
                                             >
                                         </select>
                                     </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label
-                                        for="state"
-                                        class="col-md-4 col-form-label text-md-right"
-                                        >State</label
-                                    >
+                                     </div>
 
-                                    <div class="col-md-6">
-                                        <select
-                                            v-model="form.state_id"
-                                            @change="getCities()"
-                                            name="state"
-                                            class="form-control"
-                                            aria-label="Default select example"
-                                        >
-                                            <option
-                                                v-for="state in states"
-                                                :key="state.id"
-                                                :value="state.id"
-                                                >{{ state.name }}</option
-                                            >
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label
-                                        for="department"
-                                        class="col-md-4 col-form-label text-md-right"
-                                        >Department</label
-                                    >
-
-                                    <div class="col-md-6">
-                                        <select
-                                            v-model="form.department_id"
-                                            name="department"
-                                            class="form-control"
-                                            aria-label="Default select example"
-                                        >
-                                            <option
-                                                v-for="department in departments"
-                                                :key="department.id"
-                                                :value="department.id"
-                                                >{{ department.name }}</option
-                                            >
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label
-                                        for="city"
-                                        class="col-md-4 col-form-label text-md-right"
-                                        >City</label
-                                    >
-
-                                    <div class="col-md-6">
-                                        <select
-                                            v-model="form.city_id"
-                                            name="city"
-                                            class="form-control"
-                                            aria-label="Default select example"
-                                        >
-                                            <option
-                                                v-for="city in cities"
-                                                :key="city.id"
-                                                :value="city.id"
-                                                >{{ city.name }}</option
-                                            >
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label
-                                        for="zip_code"
-                                        class="col-md-4 col-form-label text-md-right"
-                                        >Zip Code</label
-                                    >
-
-                                    <div class="col-md-6">
-                                        <input
-                                            id="zip_code"
-                                            v-model="form.zip_code"
-                                            type="text"
-                                            class="form-control "
-                                            required
-                                        />
-                                    </div>
-                                </div>
                                 <div class="form-group row">
                                     <label
                                         for="zip_code"
@@ -249,29 +199,34 @@ export default {
     },
     data() {
         return {
-            countries: [],
-            states: [],
-            departments: [],
-            cities: [],
+            // countries: [],
+            // states: [],
+            // departments: [],
+            // cities: [],
+            companies: [],
             form: {
                 first_name: "",
                 last_name: "",
                 middle_name: "",
                 address: "",
-                country_id: "",
-                state_id: "",
-                department_id: "",
-                city_id: "",
-                zip_code: "",
+                phone: "",
+                email: "",
+                company_id: "",
+                // country_id: "",
+                // state_id: "",
+                // department_id: "",
+                // city_id: "",
+                // zip_code: "",
                 birthdate: null,
                 date_hired: null
             }
         };
     },
     created() {
-        this.getCountries();
-        this.getDepartments();
+        // this.getCountries();
+        // this.getDepartments();
         this.getEmployee();
+         this.getCompanies();
     },
     methods: {
         getEmployee() {
@@ -279,53 +234,64 @@ export default {
                 .get("/api/employees/" + this.$route.params.id)
                 .then(res => {
                     this.form = res.data.data;
-                    this.getStates();
-                    this.getCities();
+                    // this.getStates();
+                    // this.getCities();
                 })
                 .catch(error => {
                     console.log(console.error);
                 });
         },
-        getCountries() {
-            axios
-                .get("/api/employees/countries")
-                .then(res => {
-                    this.countries = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
-        getStates() {
-            axios
-                .get("/api/employees/" + this.form.country_id + "/states")
-                .then(res => {
-                    this.states = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
-        getCities() {
-            axios
-                .get("/api/employees/" + this.form.state_id + "/cities")
-                .then(res => {
-                    this.cities = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
-        getDepartments() {
-            axios
-                .get("/api/employees/departments")
-                .then(res => {
-                    this.departments = res.data;
-                })
-                .catch(error => {
-                    console.log(console.error);
-                });
-        },
+         getCompanies() {
+             axios
+                 .get("/api/employees/companies")
+                 .then(res => {
+                     this.companies = res.data;
+                 })
+                 .catch(error => {
+                     console.log(console.error);
+                 });
+         },
+        
+        // getCountries() {
+        //     axios
+        //         .get("/api/employees/countries")
+        //         .then(res => {
+        //             this.countries = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
+        // getStates() {
+        //     axios
+        //         .get("/api/employees/" + this.form.country_id + "/states")
+        //         .then(res => {
+        //             this.states = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
+        // getCities() {
+        //     axios
+        //         .get("/api/employees/" + this.form.state_id + "/cities")
+        //         .then(res => {
+        //             this.cities = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
+        // getDepartments() {
+        //     axios
+        //         .get("/api/employees/departments")
+        //         .then(res => {
+        //             this.departments = res.data;
+        //         })
+        //         .catch(error => {
+        //             console.log(console.error);
+        //         });
+        // },
         updateEmployee() {
             axios
                 .put("/api/employees/" + this.$route.params.id, {
@@ -333,11 +299,14 @@ export default {
                     middle_name: this.form.middle_name,
                     last_name: this.form.last_name,
                     address: this.form.address,
-                    country_id: this.form.country_id,
-                    state_id: this.form.state_id,
-                    city_id: this.form.city_id,
-                    department_id: this.form.department_id,
-                    zip_code: this.form.zip_code,
+                    email: this.form.email,
+                    phone: this.form.phone,
+                     company_id: this.form.company_id,
+                    // country_id: this.form.country_id,
+                    // state_id: this.form.state_id,
+                    // city_id: this.form.city_id,
+                    // department_id: this.form.department_id,
+                    // zip_code: this.form.zip_code,
                     birthdate: this.format_date(this.form.birthdate),
                     date_hired: this.format_date(this.form.date_hired)
                 })

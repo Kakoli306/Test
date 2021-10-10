@@ -88,6 +88,25 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="user_roles"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('User Roles') }}</label>
+                            <div class="col-md-6">
+                                    <select name="user_roles" class="form-control">
+                                    <option value="{{ $user->id }}">{{ $user->user_roles }}</option>
+                                        <!-- <option value="{{ old('user_roles', $user->user_roles) }}">
+                                                    {{ $user->user_roles }}</option> -->
+
+                                    </select>
+                                    @error('user_roles')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
+                            </div>
+
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">

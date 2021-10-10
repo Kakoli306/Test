@@ -14,13 +14,16 @@ class Employee extends Model
             'last_name',
             'middle_name',
             'address',
-            'country_id',
-            'state_id',
-            'city_id',
-            'department_id',
+            'email',
+            'phone',
+            'company_id',
+            // 'country_id',
+            // 'state_id',
+            // 'city_id',
+            // 'department_id',
             'birthdate',
             'date_hired',
-            'zip_code',
+            // 'zip_code',
     ];
 
     protected $casts = [
@@ -29,6 +32,10 @@ class Employee extends Model
     'date_hired' => 'datetime:Y-m-d',
 ];
 
+public function company()
+{
+    return $this->belongsTo(Company::class);
+}
     public function country()
     {
         return $this->belongsTo(Country::class);

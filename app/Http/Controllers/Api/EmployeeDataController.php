@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\Department;
 use App\Models\State;
+use App\Models\Company;
+
 use Illuminate\Http\Request;
 
 class EmployeeDataController extends Controller
 {
+    public function companies()
+    {
+        $companies = Company::all();
+
+        return response()->json($companies);
+    }
     public function countries()
     {
         $countries = Country::all();
@@ -31,4 +39,5 @@ class EmployeeDataController extends Controller
 
         return response()->json($departments);
     }
+    
 }

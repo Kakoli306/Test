@@ -30,7 +30,7 @@
                                             Search
                                         </button>
                                     </div>
-                                    <div class="col">
+                                    <!-- <div class="col">
                                         <select
                                             v-model="selectedDeprtment"
                                             name="city"
@@ -44,7 +44,22 @@
                                                 >{{ department.name }}</option
                                             >
                                         </select>
-                                    </div>
+                                    </div> -->
+                                    <div class="col">
+                                        <select
+                                            v-model="selectedCompany"
+                                            name="company"
+                                            class="form-control"
+                                            aria-label="Default select example"
+                                        >
+                                            <option
+                                                v-for="company in companies"
+                                                :key="company.id"
+                                                :value="company.id"
+                                                >{{ company.name }}</option
+                                            >
+                                        </select>
+                                    </div> 
                                 </div>
                             </form>
                         </div>
@@ -65,7 +80,6 @@
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Address</th>
-                                <th scope="col">Department</th>
                                 <th scope="col">Manage</th>
                             </tr>
                         </thead>
@@ -78,7 +92,6 @@
                                 <td>{{ employee.first_name }}</td>
                                 <td>{{ employee.last_name }}</td>
                                 <td>{{ employee.address }}</td>
-                                <td>{{ employee.department.name }}</td>
                                 <td>
                                     <router-link
                                         :to="{
@@ -112,7 +125,8 @@ export default {
             showMessage: false,
             message: "",
             search: null,
-            selectedDeprtment: null,
+            //selectedDeprtment: null,
+            selectedCompany : null,
             departments: []
         };
     },
@@ -120,13 +134,10 @@ export default {
         search() {
             this.getEmployees();
         },
-        selectedDeprtment() {
-            this.getEmployees();
-        }
+        
     },
     created() {
         this.getEmployees();
-        this.getDepartments();
     },
     methods: {
         getEmployees() {
@@ -134,7 +145,7 @@ export default {
                 .get("/api/employees", {
                     params: {
                         search: this.search,
-                        department_id: this.selectedDeprtment
+                        //department_id: this.selectedDeprtment
                     }
                 })
                 .then(res => {

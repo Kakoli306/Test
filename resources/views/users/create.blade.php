@@ -87,6 +87,24 @@
                             </div>
 
                             <div class="form-group row">
+                                <label for="user roles"
+                                    class="col-md-4 col-form-label text-md-right">{{ __('User Roles') }}</label>
+                            <div class="col-md-6">
+                                    <select name="user_roles" class="form-control" aria-label="Default select example">
+                                        <option selected>User Roles</option>
+                                            <option value="admins">Admins</option>
+                                            <option value="users">Team Member</option>
+
+                                    </select>
+                                    @error('user_roles')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                            </div>
+                            </div>
+
+                            <div class="form-group row">
                                 <label for="password"
                                     class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 

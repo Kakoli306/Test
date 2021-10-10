@@ -12,6 +12,8 @@ Vue.component(
     require("./components/employees/Index.vue").default
 );
 
+
+
 const router = new VueRouter({
     mode: "history",
     routes: routes

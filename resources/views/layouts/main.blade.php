@@ -42,15 +42,20 @@
             <hr class="sidebar-divider">
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
+              <a class="nav-link" href="/companies">
+                  <span>Company Management</span></a>
+            </li>
+            
+            <li class="nav-item">
                 <a class="nav-link" href="/employees">
-                    <span>Employee Management</span></a>
+                    <span>Employees</span></a>
             </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSystem"
                     aria-expanded="true" aria-controls="collapseSystem">
                     <i class="fas fa-fw fa-cog"></i>
@@ -63,8 +68,8 @@
                         <a class="collapse-item" href="{{ route('departments.index') }}">Department</a>
                         <a class="collapse-item" href="{{ route('cities.index') }}">City</a>
                     </div>
-                </div>
-            </li>
+                </div> 
+            </li> -->
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -78,8 +83,8 @@
                 <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{{ route('users.index') }}">Users</a>
-                        <a class="collapse-item" href="cards.html">Role</a>
-                        <a class="collapse-item" href="cards.html">Permission</a>
+                        <!-- <a class="collapse-item" href="cards.html">Role</a>
+                        <a class="collapse-item" href="cards.html">Permission</a> -->
                     </div>
                 </div>
             </li>
